@@ -1,10 +1,9 @@
-import DrawingGame from '@/components/DrawingGame';
+import Game from '@/components/Game';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="container mx-auto py-10 px-4 min-h-screen">
-      <h1 className="text-3xl font-bold text-center mb-8">AI Drawing Guessing Game</h1>
-      <DrawingGame />
+    <main className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <Game />
     </main>
   );
 }
