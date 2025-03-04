@@ -4,9 +4,11 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import DrawingCanvas from '@/components/DrawingCanvas';
+
 import { AlertCircle, CheckCircle2, RefreshCw } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import DrawingCanvas from './DrawingCanvas';
+import { toast } from 'sonner';
 
 const DRAWING_PROMPTS = [
   'cat', 'dog', 'house', 'tree', 'car', 'flower', 'sun', 'moon', 
@@ -17,7 +19,7 @@ const DRAWING_PROMPTS = [
 type GameState = 'idle' | 'drawing' | 'processing' | 'result';
 
 export default function DrawingGame() {
-  const { toast } = useToast();
+  
   const [gameState, setGameState] = useState<GameState>('idle');
   const [currentPrompt, setCurrentPrompt] = useState<string>('');
   const [aiGuess, setAiGuess] = useState<string>('');
@@ -61,11 +63,8 @@ export default function DrawingGame() {
       
     } catch (error) {
       console.error('Error analyzing drawing:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to analyze your drawing. Please try again.',
-        variant: 'destructive',
-      });
+      toast('Failed to analyze your drawing. Please try again.',
+      );
       setGameState('drawing');
     }
   };
